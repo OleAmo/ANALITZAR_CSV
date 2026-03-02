@@ -298,12 +298,54 @@ for (i in 1:num_elements){
     llista_id <- c(llista_id,id)
     llista_riu <- c(llista_riu,riu)
     
-    rius_new <- data.frame(
+    rius_v1 <- data.frame(
       OBJECTID_2 = llista_id,
       nom_rio = llista_riu
     )
   }
 }
 
-rius_new
+rius_v1
+
+
+#  Exemple = ANALIZAR CSV SHAPE v2
+
+#  OBJECTIU 1
+#         +) Tronar a buscar OBJECTID_2 REPETITS
+#         +) Crear una NOVA TAULA només amb els REPETITS
+
+num_elements <- length(rius_v1[,1])-1
+llista_id <- c()
+llista_riu <- c()
+
+for (i in 1:num_elements){
+  id <- rius_v1[i,1]
+  id_2<- rius_v1[i+1,1]
+
+  riu <- rius_v1[i,2]
+  riu_2 <- rius_v1[i+1,2]
+  
+  if (id == id_2){
+    llista_id <- c(llista_id,id)
+    llista_riu <- c(llista_riu,riu)
+    
+    rius_v2 <- data.frame(
+      OBJECTID_2 = llista_id,
+      nom_rio = llista_riu
+    )
+  }
+}
+
+rius_v2
+
+
+#  Exemple = ANALIZAR CSV SHAPE v3
+
+#  OBJECTIU 1
+#         +) AJUNTAR les dos TAULES
+#         +) Els que sempre han tingut un sol OBJECTEID_2
+#         +) Les dos taules de OBTJECTID_2 repetits 
+
+
+
 
