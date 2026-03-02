@@ -339,10 +339,10 @@ for (i in 1:num_elements){
 rius_v2
 
 
-#  Exemple = ANALIZAR CSV SHAPE v3
+#  Exemple = ANALIZAR CSV SHAPE v4
 
 #  OBJECTIU 1
-#         +) AJUNTAR les dos TAULES
+#         +)AJUNTAR les dos TAULES
 #         +)QUAN AJUNTEM ES BARREJA info processada i la original
 
 #  PROCÉS
@@ -355,24 +355,40 @@ rius_v2
 rius_unio <- rbind(rius_v1,rius_v2)
 
 
-#  Exemple = ANALIZAR CSV SHAPE v3
+
+#  Exemple = ANALIZAR CSV SHAPE v5
 
 #  OBJECTIU 1
 #         +) AJUNTAR les dos TAULES
 #         +) QUAN AJUNTEM ES BARREJA info processada i la original
 #         +) SEPARAR les dos infos per tenir una TAULA FINAL BONA
-
+#         +) Hem de saber quins IDs de les ultimes taules es repeteixen
+#         +) I borrar just aquestes linies
 
 #  PROCÉS
 #         +) AJUNTAR FILES amb  rbind()
+#         +) ELIMINAR per FILTER
 
-# TAULA ORIGINAL
+#  PROCÉS
+#         +) EXEMPLE ELIMINIAR
 
-rius_3
+df2 <- data.frame(
+  id = c(5,6,7,8),
+  nom = c("Fluvià","Muga","mmm","ooo"),
+  longitud = c(80, 65, 89,98)
+)
+
+df2 <- df2 %>%
+  filter(nom != "Muga")
+
+
+#  PROCÉS
+#         +)ELIMINIAR IDs REPETITS
+
 
 # TAULES Tractades x ELIMINAR SENSE NOMS
 rius_v1
 rius_v2
 
-rius_unio <- rbind(rius_v1,rius_v2)
-
+num_elements_v1 <- length(rius_v1[,1])-1
+num_elements_v2 <- length(rius_v2[,1])-1
