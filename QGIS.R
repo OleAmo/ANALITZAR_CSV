@@ -393,3 +393,12 @@ rius_v2
 
 num_elements_v1 <- length(rius_v1[,1])-1
 num_elements_v2 <- length(rius_v2[,1])-1
+
+ids_rius_v1 <- c()
+
+for (i in 1:num_elements_v1){
+  print(rius_v1[i,1])
+  print(rius_v2[i,1])
+ 
+ 
+}
