@@ -346,6 +346,17 @@ rius_v2
 #         +) Els que sempre han tingut un sol OBJECTEID_2
 #         +) Les dos taules de OBTJECTID_2 repetits 
 
+#  PROCÉS
+#         +) AJUNTAR FILES amb   rbind()
+
+# TAULA ORIGINAL
+rius_3
+
+# TAULES Tractades x ELIMINAR SENSE NOMS
+rius_v1
+rius_v2
+
+rius_unio <- rbind(rius_v1,rius_v2)
 
 
 
