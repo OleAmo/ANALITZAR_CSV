@@ -369,8 +369,9 @@ rius_unio <- rbind(rius_v1,rius_v2)
 #         +) AJUNTAR FILES amb  rbind()
 #         +) ELIMINAR per FILTER
 
-#  PROCÉS
+#  PROCÉS EXEMPLE
 #         +) EXEMPLE ELIMINIAR
+#         +) EXEMPLE d R
 
 df2 <- data.frame(
   id = c(5,6,7,8),
@@ -382,23 +383,30 @@ df2 <- df2 %>%
   filter(longitud != c(80,65))
 
 
-
 #  PROCÉS
 #         +)ELIMINIAR IDs REPETITS
+#         +)Comparar els IDs de RIUS_V2 vs RIUS_V1
+#         +)RIUS_V2 te menys que RIUS_V1
 
 
-# TAULES Tractades x ELIMINAR SENSE NOMS
+
 rius_v1
 rius_v2
 
-num_elements_v1 <- length(rius_v1[,1])-1
-num_elements_v2 <- length(rius_v2[,1])-1
+num_elements_v1 <- length(rius_v1[,1])
+num_elements_v2 <- length(rius_v2[,1])
 
-ids_rius_v1 <- c()
+#         +)Crear vectors dels ID del RIU_V2
+#         +)Eliminar del RIUS_V1 les files de ID que surten al vector
 
-for (i in 1:num_elements_v1){
-  print(rius_v1[i,1])
-  print(rius_v2[i,1])
- 
- 
+id_rius_v2 <- c()
+
+for (i in 1:num_elements_v2){
+  id_rius_v2 <- c(id_rius_v2,rius_v2[i,1])
 }
+
+#  NO SE SI ESTÀ BEEEEEEEEEE???
+
+rius_v3 <- rius_v1 %>%
+  filter(!(OBJECTID_2 %in% id_rius_v2))
+
