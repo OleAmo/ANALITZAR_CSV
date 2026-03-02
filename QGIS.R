@@ -379,7 +379,8 @@ df2 <- data.frame(
 )
 
 df2 <- df2 %>%
-  filter(nom != "Muga")
+  filter(longitud != c(80,65))
+
 
 
 #  PROCÉS
