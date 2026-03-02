@@ -343,14 +343,10 @@ rius_v2
 
 #  OBJECTIU 1
 #         +) AJUNTAR les dos TAULES
-#         +) Els que sempre han tingut un sol OBJECTEID_2
-#         +) Les dos taules de OBTJECTID_2 repetits 
+#         +)QUAN AJUNTEM ES BARREJA info processada i la original
 
 #  PROCÉS
-#         +) AJUNTAR FILES amb   rbind()
-
-# TAULA ORIGINAL
-rius_3
+#         +) AJUNTAR FILES amb  rbind()
 
 # TAULES Tractades x ELIMINAR SENSE NOMS
 rius_v1
@@ -359,4 +355,24 @@ rius_v2
 rius_unio <- rbind(rius_v1,rius_v2)
 
 
+#  Exemple = ANALIZAR CSV SHAPE v3
+
+#  OBJECTIU 1
+#         +) AJUNTAR les dos TAULES
+#         +) QUAN AJUNTEM ES BARREJA info processada i la original
+#         +) SEPARAR les dos infos per tenir una TAULA FINAL BONA
+
+
+#  PROCÉS
+#         +) AJUNTAR FILES amb  rbind()
+
+# TAULA ORIGINAL
+
+rius_3
+
+# TAULES Tractades x ELIMINAR SENSE NOMS
+rius_v1
+rius_v2
+
+rius_unio <- rbind(rius_v1,rius_v2)
 
