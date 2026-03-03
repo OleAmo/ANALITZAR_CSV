@@ -28,7 +28,7 @@ rius
 
 
 #   Ara començaré a filtrar
-#   Vull saber els que estan repetis
+#   Vull saber LONGITUD REPETIDE
 
 longitud_repetida <- c()
 
@@ -45,6 +45,19 @@ for (i in 1:longitud){
 
 longitud_repetida
 
+#   Ara amb les LONGITUD REPETIDES
+#   Crearé DUES TAULES
+
+#   La PRIMERA sense LES REPTETIDES
+#   La SEGONA amb NOMES REPETIDES = despres la filtraré
+
+
+rius_no_repetits <- rius %>%
+  filter(!(rius$longitud %in% longitud_repetida)) 
+
+#   Ara ja tinc TAULA NO REPETIDA = rius_no_repetits
+#   Tinc tb un VECTOR amb LONGITUD REPETIDES
+#   He de transformar el VECTOR de LONG REPETIDES amb una TAULA COMPLETA
 
 
 
