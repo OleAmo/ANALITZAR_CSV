@@ -369,9 +369,21 @@ df2 <- data.frame(
   longitud = c(80, 65, 89,98)
 )
 
-df2 <- df2 %>%
-  filter(longitud != c(80,65,33))
+#   Fem un FILTER
+#   Comparem FILA a FILA
+#   volem quedar-nos només amb les files on longitud NO sigui 80 ni 65 ni 33.
 
+
+#  Pregunta si el VALOR de LONGITUD de la fila 1,2,3,4 està en c()
+
+df2$longitud[1] %in% c(80,65,33)
+df2$longitud[2] %in% c(80,65,33)
+df2$longitud[3] %in% c(80,65,33)
+df2$longitud[4] %in% c(80,65,33)
+
+df2 <- df2 %>%
+  filter(!(longitud %in% c(80,65,33))) 
+  
 
 
 #  CREAR FUNCIÓ i ACCEDIR A VARIABLES
@@ -556,16 +568,33 @@ id_rius_v2 <- c()
 
 ##   ELIMINAR FILES
 
-##   df2 <- df2 %>%
-##     filter(longitud != c(80,65,33))
+#   Fem un FILTER
+#   Comparem FILA a FILA
+#   volem quedar-nos només amb les files on longitud NO sigui 80 ni 65 ni 33.
+
+#   df2 <- df2 %>%
+#     filter(!(longitud %in% c(80,65,33))) 
+
 
 
 for (i in 1:num_elements_v2){
   id_rius_v2 <- c(id_rius_v2,rius_exmple_2[i,1])
 }
 
+#   Fem una NOVA TAULA = RIUS_SENSE_ID
+#   Es la taula EXMPLE_1 sense els VALORS de EXEMPLE_2
+#   Això ho fem ja que a EXEMPLE_1 havia IDs REPETITS
+#   Els IDs REPETITS estaven ja SIMPLIFICATS a EXEMPLE_2
+
 rius_sense_id <- rius_exmple_1 %>%
-  filter(OBJECTID_2 != id_rius_v2)
+  filter(!(OBJECTID_2 %in% id_rius_v2))
+
+#   Ara ajuntarem la NOVA TAULA més la EXEMPLE_2
+#   Aixi tindrem NOMES els VALORS de SIN NOMBRE ja no repetits
+
+
+
+
 
 
 
