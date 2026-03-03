@@ -546,17 +546,26 @@ rius_2 <- rius_final$rius_2
 
 
 
-rius_v1
-rius_v2
+rius_exmple_1 <- rius_1
+rius_exmple_2 <- rius_2
 
-num_elements_v1 <- length(rius_v1[,1])
-num_elements_v2 <- length(rius_v2[,1])
+num_elements_v1 <- length(rius_exmple_1[,1])
+num_elements_v2 <- length(rius_exmple_2[,1])
 
 id_rius_v2 <- c()
 
+##   ELIMINAR FILES
+
+##   df2 <- df2 %>%
+##     filter(longitud != c(80,65,33))
+
+
 for (i in 1:num_elements_v2){
-  id_rius_v2 <- c(id_rius_v2,rius_v2[i,1])
+  id_rius_v2 <- c(id_rius_v2,rius_exmple_2[i,1])
 }
+
+rius_sense_id <- rius_exmple_1 %>%
+  filter(OBJECTID_2 != id_rius_v2)
 
 
 
