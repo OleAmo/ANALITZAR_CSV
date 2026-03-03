@@ -30,14 +30,20 @@ rius
 #   Ara començaré a filtrar
 #   Vull saber els que estan repetis
 
+longitud_repetida <- c()
 
 longitud <- length(rius[,1])
 for (i in 1:longitud){
   val <- rius$longitud[i]
   index_val <- which(rius$longitud == val)
   num_index <- length(index_val)
-  print(num_index)
+  if (num_index > 1){
+    longitud_repetida <- c(longitud_repetida,val)
+    
+  }
 }
+
+longitud_repetida
 
 
 
