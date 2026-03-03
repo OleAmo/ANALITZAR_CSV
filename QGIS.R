@@ -383,10 +383,6 @@ df2 <- df2 %>%
   filter(longitud != c(80,65,33))
 
 
-#  PROCÉS
-#         +)ELIMINIAR IDs REPETITS
-#         +)Comparar els IDs de RIUS_V2 vs RIUS_V1
-#         +)RIUS_V2 te menys que RIUS_V1
 
 
 #  CREAR FUNCIÓ i ACCEDIR A VARIABLES
@@ -410,7 +406,33 @@ valors <- nom_funcio()
 
 valors$val_1
 
-##################
+
+
+#  CREAR FUNCIÓ QUE CREA RIUS_3 i RIUS_v1 i v2
+#         +)Aprenc a crear funció
+#         +)I com accedir a les variables creades
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#  PROCÉS
+#         +)ELIMINIAR IDs REPETITS
+#         +)Comparar els IDs de RIUS_V2 vs RIUS_V1
+#         +)RIUS_V2 te menys que RIUS_V1
+#         +)Crear vectors dels ID del RIU_V2
+#         +)Eliminar del RIUS_V1 les files de ID que surten al vector
+
+
 
 rius_v1
 rius_v2
@@ -418,17 +440,11 @@ rius_v2
 num_elements_v1 <- length(rius_v1[,1])
 num_elements_v2 <- length(rius_v2[,1])
 
-#         +)Crear vectors dels ID del RIU_V2
-#         +)Eliminar del RIUS_V1 les files de ID que surten al vector
-
 id_rius_v2 <- c()
 
 for (i in 1:num_elements_v2){
   id_rius_v2 <- c(id_rius_v2,rius_v2[i,1])
 }
 
-#  NO SE SI ESTÀ BEEEEEEEEEE???
 
-rius_v3 <- rius_v1 %>%
-  filter(OBJECTID_2 != id_rius_v2)
 
