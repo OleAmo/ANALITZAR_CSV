@@ -59,5 +59,24 @@ rius_no_repetits <- rius %>%
 #   Tinc tb un VECTOR amb LONGITUD REPETIDES
 #   He de transformar el VECTOR de LONG REPETIDES amb una TAULA COMPLETA
 
+rius_repetits <- rius %>%
+  filter((rius$longitud %in% longitud_repetida))
 
+
+#   Ara amb la TAULA REPETIDA he de unir DOS NOMS a UNA LONGITUD
+
+longitud_rep <- length(rius_repetits[,1])+1 
+
+
+
+for ( i in 1:longitud_rep){
+  nom <- rius_repetits$nom[i]
+  nom_2 <- rius_repetits$nom[i+1]
+  long_1 <- rius_repetits$longitud[i]
+  long_2 <- rius_repetits$longitud[i+1]
+  if (long_1==long_1){
+    print(paste(nom,' - ',nom_2))
+  }
+  
+}
 
