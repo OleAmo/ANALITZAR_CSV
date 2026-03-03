@@ -356,22 +356,12 @@ rius_unio <- rbind(rius_v1,rius_v2)
 
 
 
-#  Exemple = ANALIZAR CSV SHAPE v5
+############  TEORIA
+######################
 
 #  OBJECTIU 1
-#         +) AJUNTAR les dos TAULES
-#         +) QUAN AJUNTEM ES BARREJA info processada i la original
-#         +) SEPARAR les dos infos per tenir una TAULA FINAL BONA
-#         +) Hem de saber quins IDs de les ultimes taules es repeteixen
-#         +) I borrar just aquestes linies
+#         +) ELIMINAR FILES de un DF
 
-#  PROCÉS
-#         +) AJUNTAR FILES amb  rbind()
-#         +) ELIMINAR per FILTER
-
-#  PROCÉS EXEMPLE
-#         +) EXEMPLE ELIMINIAR
-#         +) EXEMPLE d R
 
 df2 <- data.frame(
   id = c(5,6,7,8),
@@ -381,7 +371,6 @@ df2 <- data.frame(
 
 df2 <- df2 %>%
   filter(longitud != c(80,65,33))
-
 
 
 
@@ -414,16 +403,139 @@ valors$val_1
 
 
 
+crear_rius <- function() {
+
+rius_3 <- data.frame(
+  OBJECTID = c(
+    60202, 60203, 60203, 60204, 60202, 60205,
+    60194, 60207, 60194, 60208, 60194, 60209,
+    60213, 60209, 60210, 60210, 60211, 60211,
+    60212, 60213, 60218, 60213, 60219, 60221,
+    60219, 60220, 60213, 60219, 60221
+  ),
+  
+  nom_rio = c(
+    "RIERA DE L'ESPARRA",
+    "SIN NOMBRE",
+    "SIN NOMBRE",
+    "SIN NOMBRE",
+    "RIERA DE L'ESPARRA",
+    "SIN NOMBRE",
+    "RIERA DE MAÇANES",
+    "SIN NOMBRE",
+    "RIERA DE MAÇANES",
+    "SIN NOMBRE",
+    "RIERA DE MAÇANES",
+    "SIN NOMBRE",
+    "TORRENT DE MOLLET",
+    "SIN NOMBRE",
+    "SIN NOMBRE",
+    "SIN NOMBRE",
+    "SIN NOMBRE",
+    "SIN NOMBRE",
+    "SIN NOMBRE",
+    "TORRENT DE MOLLET",
+    "SIN NOMBRE",
+    "TORRENT DE MOLLET",
+    "SIN NOMBRE",
+    "SIN NOMBRE",
+    "SIN NOMBRE",
+    "SIN NOMBRE",
+    "TORRENT DE MOLLET",
+    "SIN NOMBRE",
+    "SIN NOMBRE"
+  ),
+  
+  OBJECTID_2 = c(
+    60203, 60203, 60204, 60204, 60205, 60205,
+    60207, 60207, 60208, 60208, 60209, 60209,
+    60209, 60210, 60210, 60211, 60211, 60212,
+    60212, 60218, 60218, 60219, 60219, 60219,
+    60220, 60220, 60221, 60221, 60221
+  ),
+  
+  nom_rio_2 = rep("SIN NOMBRE", 29)
+)
+
+
+num_elements <- length(rius_3[,3])-1
+llista_id <- c()
+llista_riu <- c()
+
+for (i in 1:num_elements){
+  id <- rius_3[i,3]
+  id_2 <- rius_3[i+1,3]
+  
+  riu <- rius_3[i,2]
+  riu_2 <- rius_3[i+1,2]
+  
+  if (id == id_2){
+    llista_id <- c(llista_id,id)
+    llista_riu <- c(llista_riu,riu)
+    
+    rius_v1 <- data.frame(
+      OBJECTID_2 = llista_id,
+      nom_rio = llista_riu
+    )
+  }
+}
+
+rius_v1
+
+num_elements <- length(rius_v1[,1])-1
+llista_id <- c()
+llista_riu <- c()
+
+for (i in 1:num_elements){
+  id <- rius_v1[i,1]
+  id_2<- rius_v1[i+1,1]
+  
+  riu <- rius_v1[i,2]
+  riu_2 <- rius_v1[i+1,2]
+  
+  if (id == id_2){
+    llista_id <- c(llista_id,id)
+    llista_riu <- c(llista_riu,riu)
+    
+    rius_v2 <- data.frame(
+      OBJECTID_2 = llista_id,
+      nom_rio = llista_riu
+    )
+  }
+}
+
+rius_v2
+
+return(list(
+  rius = rius_3,
+  rius_1 = rius_v1,
+  rius_2 = rius_v2
+  
+  
+))
+
+}
+
+
+rius_final <- crear_rius()
+
+rius_1 <- rius_final$rius_1
+rius_2 <- rius_final$rius_2
 
 
 
+#  Exemple = ANALIZAR CSV SHAPE v5
 
+#  OBJECTIU 1
+#         +) AJUNTAR les dos TAULES
+#         +) QUAN AJUNTEM ES BARREJA info processada i la original
+#         +) SEPARAR les dos infos per tenir una TAULA FINAL BONA
+#         +) Hem de saber quins IDs de les ultimes taules es repeteixen
+#         +) I borrar just aquestes linies
 
-
-
-
-
-
+#  PROCÉS
+#         +) AJUNTAR FILES amb  rbind()
+#         +) ELIMINAR per FILTER
 
 #  PROCÉS
 #         +)ELIMINIAR IDs REPETITS
