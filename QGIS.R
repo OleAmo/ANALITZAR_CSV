@@ -592,9 +592,10 @@ rius_sense_id <- rius_exmple_1 %>%
 #   Ara ajuntarem la NOVA TAULA més la EXEMPLE_2
 #   Aixi tindrem NOMES els VALORS de SIN NOMBRE ja no repetits
 
+rius_sense_id
+rius_exmple_1
 
 
-
-
+rius_depurats <- rbind(rius_sense_id,rius_exmple_1)
 
 
