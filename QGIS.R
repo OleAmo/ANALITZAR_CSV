@@ -380,7 +380,7 @@ df2 <- data.frame(
 )
 
 df2 <- df2 %>%
-  filter(longitud != c(80,65))
+  filter(longitud != c(80,65,33))
 
 
 #  PROCÉS
@@ -389,6 +389,28 @@ df2 <- df2 %>%
 #         +)RIUS_V2 te menys que RIUS_V1
 
 
+#  CREAR FUNCIÓ i ACCEDIR A VARIABLES
+#         +)Aprenc a crear funció
+#         +)I com accedir a les variables creades
+
+
+nom_funcio <- function() {
+  
+  n <- 5
+  d <- 23
+  r <- 33
+  
+  return(list(
+    val_1 = n,
+    val_2 = d,
+    val_3 = r))
+}
+
+valors <- nom_funcio()
+
+valors$val_1
+
+##################
 
 rius_v1
 rius_v2
@@ -408,5 +430,5 @@ for (i in 1:num_elements_v2){
 #  NO SE SI ESTÀ BEEEEEEEEEE???
 
 rius_v3 <- rius_v1 %>%
-  filter(!(OBJECTID_2 %in% id_rius_v2))
+  filter(OBJECTID_2 != id_rius_v2)
 
