@@ -144,3 +144,12 @@ if (valor == 0){
 }
 
 
+rius_repetits_units
+rius_no_repetits 
+
+#   Un cop comprovades que no estan repetides
+#   Ja les podem unir
+
+rius_final <- rbind(rius_no_repetits , rius_repetits_units)
+
+
