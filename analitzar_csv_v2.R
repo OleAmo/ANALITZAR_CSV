@@ -63,7 +63,8 @@ rius_repetits <- rius %>%
   filter((rius$longitud %in% longitud_repetida))
 
 
-#   Ara amb la TAULA REPETIDA he de unir DOS NOMS a UNA LONGITUD
+#   Ara amb la TAULA de LONG REPETITS
+#   He de CREAR una TAULA NOVA mab els DOS NOMS la UNA LONGITUD REPETIDA
 
 #   EXEMPLE  = Com AFEGIR UNA FILA a un DATA FRAME
 
