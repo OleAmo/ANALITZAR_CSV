@@ -65,8 +65,9 @@ rius_repetits <- rius %>%
 
 #   Ara amb la TAULA REPETIDA he de unir DOS NOMS a UNA LONGITUD
 
-longitud_rep <- length(rius_repetits[,1])-1 
+longitud_rep <- length(rius_repetits[,1])
 
+rius_repetits_units <- data.frame()
 for ( i in 1:longitud_rep){
   nom <- rius_repetits$nom[i]
   nom_2 <- rius_repetits$nom[i+1]
@@ -82,9 +83,18 @@ for ( i in 1:longitud_rep){
     
     print(paste(id_nou," - ",nom_nou," - ",long_nou))
     
-
+    rius_repetits_units <- rbind(
+      rius_repetits_units,
+      data.frame(id = id, nom = nom_nou, longitud = long_nou)
+    )
+    
+    
   }
 }
+
+
+
+rius_repetits_units
 
 #   Com AFEGIR UNA FILA a un DATA FRAME
 #   Es un EXEMPLE
