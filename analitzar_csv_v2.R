@@ -102,4 +102,45 @@ for ( i in 1:longitud_rep){
 
 rius_repetits_units
 
+#   Ara ja tinc la TAULA de les LONG REPETIDES ara AMB UN NOM UNIT
+#   He d'ajuntar AQUESTA TAULA a la TAULA que NO TENIA REPETITS
+
+rius_repetits_units
+rius_no_repetits 
+
+#   Abans de unir-les
+#   He de comprovar que no estan repetits les LONGITUDS
+
+#   Consulta ens diu si ESTÀ o no DINS
+
+rius_no_repetits$longitud[1] %in% rius_repetits_units$longitud
+
+#   Ara ho consulatarem amb un FOR
+#   Comprovem que cada LONG de NO REPETIDA si es troba dins de REPETIDA
+
+#   PROCÉS
+#     Faig un FOR on comprova = ada LONG de NO REPETIDA si es troba dins de REPETIDA
+#     Si NO HI HA CAP REPETIDA = VALOR = 0
+#     Si NO HI HA CAP REPETIDA = VALOR = 1
+#     Despres FAIG un IF on CONSULTO el VALOR i
+#     En funció d'això ESCRIC UNA FRASE
+
+
+long_repe <- length(rius_repetits_units$longitud)
+long_no_repe <- length(rius_no_repetits$longitud)
+
+for (i in 1:long_no_repe){
+  repe <- rius_no_repetits$longitud[i] %in% rius_repetits_units$longitud
+  valor <- 0
+  if(repe == TRUE){
+    valor <- 1
+  }
+}
+
+if (valor == 0){ 
+  print("TOT CORRECTE: NO hi ha LONG repetides")
+} else {
+  print("INCORRECTE: Hi ha alguna LONG repetida")
+}
+
 
