@@ -67,14 +67,12 @@ rius_repetits <- rius %>%
 
 longitud_rep <- length(rius_repetits[,1])-1 
 
-
-
 for ( i in 1:longitud_rep){
   nom <- rius_repetits$nom[i]
   nom_2 <- rius_repetits$nom[i+1]
   long_1 <- rius_repetits$longitud[i]
   long_2 <- rius_repetits$longitud[i+1]
-  id <- rius_repetits$id
+  id <- rius_repetits$id[i]
   
   if (long_1==long_2){
     
