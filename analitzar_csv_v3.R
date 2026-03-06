@@ -41,8 +41,8 @@ rius_2 <- rius %>%
 #   Al final tenim la taula del SINOMBRE amb NOM NOU
 
 #   PROBLEMA = a vegades encara queden SINOMBRES
-#   El PQ es causa de que hem de tornar a iterar id_1 i id_2
-#   El altre PQ és que els CSV de base havia INTERSERCT de un SIN NOMBRE amb un SIN NOMBRE
+#       El PQ es causa de que hem de tornar a iterar id_1 i id_2
+#       El altre PQ és que els CSV de base havia INTERSERCT de un SIN NOMBRE amb un SIN NOMBRE
 
 
 
@@ -62,8 +62,34 @@ for (i in 1:(long-1)){
       data.frame(OBJECTID = id_sinnom, nom_rio = nou_nom)
     )
   }
-  
 }
+
+#   NOVA ITERACIÓ
+#   Intentar donar nom als SIN NOMBRE
+
+long <- length(rius_sinnom$nom_rio)
+
+rius_sinnom_2 <- data.frame()
+for (i in 1:(long-1)){
+  id_1 <- rius_sinnom$OBJECTID[i]
+  id_2 <- rius_sinnom$OBJECTID[i+1]
+  
+  if(id_1 == id_2 ){
+    id_sinnom_2 <- id_1
+    nou_nom_2 <- rius_sinnom$nom_rio[i]
+    
+    rius_sinnom_2 <- rbind(
+      rius_sinnom_2,
+      data.frame(OBJECTID = id_sinnom_2, nom_rio = nou_nom_2)
+    )
+  }
+}
+
+#   Ara ja tenim la 2a TAULA DEPURADA 
+#   I també la 1ra DEPURADA que se li  han de treure les files de TAULA DEPURADA 2
+
+rius_sinnom
+rius_sinnom_2
 
 
 
