@@ -19,6 +19,18 @@ rius <- read_csv("data/raw/TAULA.csv")
 head(rius)
 names(rius)
 
-#   Començar a ANALITZAR
+#   ANALITZAR
 
+#   Vull DETECTAR els ID_2 REPETITS
+#   ID_2 REPETITS = vol dir que un RIU SIN NOMBRE ha fet INTERSECT amb RIU AMB NOM (ID)
+
+#   ORDENAR una taula x ID_2
+#   Així puc veure les dades ordenades
+
+rius %>%
+  arrange(OBJECTID_2)
+
+#   ANALIZAR
+
+long <- length(rius$nom_rio)
 
