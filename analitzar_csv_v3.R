@@ -1,4 +1,3 @@
-
 #    PROJECTE 
 #    
 #    Automatizar el procés de depuració de CSV   
@@ -7,8 +6,19 @@
 
 
 library(tidyverse)
-library(sf) 
 
-#    Crear una TAULA amb 4 COLUMNES
-#    Dos columnes de ID i Dos de NOM
-#    Ha d'haver noms SENSE NOM per k jo aprengui a depurar
+#    LLEGIR un CSV
+#    Ha estat guardat amb CORTAR/ PEGAR a la carpeta del projecte
+#    ASSIGNAR el CSV a una variable RIUS
+
+
+rius <- read_csv("data/raw/TAULA.csv")
+
+#    veure el tipus de dades que tinc
+
+head(rius)
+names(rius)
+
+#   Començar a ANALITZAR
+
+
