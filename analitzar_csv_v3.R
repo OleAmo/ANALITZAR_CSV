@@ -85,12 +85,52 @@ for (i in 1:(long-1)){
   }
 }
 
-#   Ara ja tenim la 2a TAULA DEPURADA 
+#   Ara ja tenim la 2a TAULA DEPURADA!
 #   I també la 1ra DEPURADA que se li  han de treure les files de TAULA DEPURADA 2
 
 rius_sinnom
 rius_sinnom_2
 
+#   Ara de la TAULA SINNOM li treiem els SINOMS_2
+#   El resulat es SINOM_3
 
+
+rius_sinnom_3 <- rius_sinnom %>%
+  filter(!(rius_sinnom$OBJECTID %in% rius_sinnom_2$OBJECTID)) 
+
+#   Ara tenim SINOM_3 i SINOM_2
+#   Son dues taules amb IDs no REPETITS 
+#   Les ajuntarem i seran SIN_NOM_FINAL
+
+rius_sinnom_3
+rius_sinnom_2
+
+#   Abans comprovem que CAP ID de SINOM_3 esta SINOM2
+#   Faig un FOR de SINOM_2
+#   Per cada ID de SINOM_2 miro si està  (%in%) en SINOM_3
+#   Si dona FALSE cada un vol dir que no estan repetits
+
+long_2 <- length(rius_sinnom_2$OBJECTID)
+
+
+for (i in 1:long_2){
+  boolean <- rius_sinnom_2$OBJECTID[i] %in% rius_sinnom_3$OBJECTID
+  if(boolean == FALSE){
+    print('No REPETIT')
+  }
+  
+}
+
+#   Un cop comprovat, ja podem UNIR sinom_3 i sionom_2
+
+rius_sinom_final <- rbind(rius_sinnom_3 , rius_sinnom_2)
+
+
+#   Ara s'haura de unir a RIUS
+#   Primer a RIUS li teriem els IDs de SINOM (que en la taula original estan repetits)
+#   I un cop trets li UNIM RIUS_SINOM FINAL
+
+rius
+rius_sinom_final
 
 
