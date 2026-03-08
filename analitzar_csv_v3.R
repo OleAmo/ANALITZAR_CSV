@@ -130,7 +130,24 @@ rius_sinom_final <- rbind(rius_sinnom_3 , rius_sinnom_2)
 #   Primer a RIUS li teriem els IDs de SINOM (que en la taula original estan repetits)
 #   I un cop trets li UNIM RIUS_SINOM FINAL
 
-rius
+rius_2
 rius_sinom_final
+
+#   Ara de RIUS_2 (amb els ID ORDENATS) he de eliminiar els SINOMBRE
+#   Per ferho ELIMINAREM les files de RIUS_2 que estiguin dins de RIUS_SINOMFINAL
+
+#   Abans de tot = RIUS_2 te IDs repetits del que tenen nom
+
+long <- length(rius_2$OBJECTID)
+
+for (i in 1:long){
+  print(rius_2$OBJECTID[i])
+  
+}
+
+rius_2_nom <- rius_2 %>%
+  filter(!(rius_2$OBJECTID %in% rius_sinom_final$OBJECTID)) 
+
+
 
 
