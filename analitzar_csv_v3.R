@@ -136,18 +136,40 @@ rius_sinom_final
 #   Ara de RIUS_2 (amb els ID ORDENATS) he de eliminiar els SINOMBRE
 #   Per ferho ELIMINAREM les files de RIUS_2 que estiguin dins de RIUS_SINOMFINAL
 
-#   Abans de tot = RIUS_2 te IDs repetits del que tenen nom
+#   Si que RIUS_2 te OBJECTIDs repetits
+#   Això passa pk la taula CSV original eren INTERSECTS i  passava aixó
 
-long <- length(rius_2$OBJECTID)
+#   PRIMER = he de ORDENAR rius_2 per OBJECTID 
+#   -------
+
+rius_2_ordrenat <- rius_2 %>%
+  arrange(OBJECTID)
+
+long <- length(rius_2_ordrenat$OBJECTID)
 
 for (i in 1:long){
-  print(rius_2$OBJECTID[i])
+  id <- rius_2_ordrenat$OBJECTID[i]
+  nom <- rius_2_ordrenat$nom_rio[i]
+  print(paste(id, ' - ',nom))
   
 }
 
-rius_2_nom <- rius_2 %>%
-  filter(!(rius_2$OBJECTID %in% rius_sinom_final$OBJECTID)) 
+#   SEGON = he de compmrovar que els noms son iguals abans de eliminar repetits
+#   -----
 
 
+rius_2_ordrenat <- rius_2 %>%
+  arrange(OBJECTID)
 
+long <- length(rius_2_ordrenat$OBJECTID)
 
+for (i in 1:long){
+  id <- rius_2_ordrenat$OBJECTID[i]
+  nom <- rius_2_ordrenat$nom_rio[i]
+  print(paste(id, ' - ',nom))
+  
+  #  fer algo pk comprovi si TOTS els noms de un ID son IGUAL
+  #  puc crear un vector de noms per un sol ID
+  #  i despres comprovar si tot son igual
+  
+}
