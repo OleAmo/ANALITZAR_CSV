@@ -174,13 +174,18 @@ for (i in 1:long_unics_id){
   id <- unics_id[i]
   index_val <- which(rius_2_ordrenat$OBJECTID == id)
   
-  vector_noms <- c()
+  vector_noms <- c() # vector on posare tots els noms de cada ID
   long_index_val <- length(index_val)
+  
   for (a in 1:long_index_val){
-    nom <- rius_2_ordrenat$nom_rio[index_val[a]]
+    nom <- rius_2_ordrenat$nom_rio[index_val[a]]  # cada nom que té cada ID repetit
     vector_noms <- c(vector_noms,nom )
   }
-  print(vector_noms)
+  unic_nom <- unique(vector_noms)   # passo a no repetits els noms
+  long_unic_nom <- length(unic_nom)
+  
+  print(unic_nom)
+ 
   
   
 }
