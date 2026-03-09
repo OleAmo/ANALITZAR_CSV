@@ -181,10 +181,15 @@ for (i in 1:long_unics_id){
     nom <- rius_2_ordrenat$nom_rio[index_val[a]]  # cada nom que té cada ID repetit
     vector_noms <- c(vector_noms,nom )
   }
-  unic_nom <- unique(vector_noms)   # passo a no repetits els noms
-  long_unic_nom <- length(unic_nom)
   
-  print(unic_nom)
+  unic_nom <- unique(vector_noms)   # vector noms el passo a no repetits 
+  long_unic_nom <- length(unic_nom) # calculo longitud d'aquest vector
+  
+  if(long_unic_nom==1){
+    print(paste(id,' té nomes UN nom = ',unic_nom[1]))
+  }
+  
+  
  
   
   
