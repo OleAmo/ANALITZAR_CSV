@@ -155,7 +155,11 @@ for (i in 1:long){
 }
 
 #   SEGON = he de compmrovar que els noms son iguals abans de eliminar repetits
-#   -----
+#   Primer de tot he de tenir els ID NO REPTITS
+#   Ho faig amb  UNIQUE()
+#   Un cop ho tingui, de cada ID no repetit buscaré en QUINS INDEX ES REPETEIX
+#   I de cada un de ells GUARDARÉ el NOM en un VECTOR
+#   Després de cada vector miraré si els NOMS es REPETEIXEN o no
 
 
 rius_2_ordrenat <- rius_2 %>%
@@ -163,13 +167,20 @@ rius_2_ordrenat <- rius_2 %>%
 
 long <- length(rius_2_ordrenat$OBJECTID)
 
-for (i in 1:long){
-  id <- rius_2_ordrenat$OBJECTID[i]
-  nom <- rius_2_ordrenat$nom_rio[i]
-  print(paste(id, ' - ',nom))
+unics_id <- unique(rius_2_ordrenat$OBJECTID)
+long_unics_id <- length(unics_id)
+
+for (i in 1:long_unics_id){
+  id <- unics_id[i]
+  index_val <- which(rius_2_ordrenat$OBJECTID == id)
   
-  #  fer algo pk comprovi si TOTS els noms de un ID son IGUAL
-  #  puc crear un vector de noms per un sol ID
-  #  i despres comprovar si tot son igual
+  vector_noms <- c()
+  long_index_val <- length(index_val)
+  for (a in 1:long_index_val){
+    nom <- rius_2_ordrenat$nom_rio[index_val[a]]
+    vector_noms <- c(vector_noms,nom )
+  }
+  print(vector_noms)
+  
   
 }
