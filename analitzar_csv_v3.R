@@ -160,6 +160,9 @@ for (i in 1:long){
 #   Un cop ho tingui, de cada ID no repetit buscaré en QUINS INDEX ES REPETEIX
 #   I de cada un de ells GUARDARÉ el NOM en un VECTOR
 #   Després de cada vector miraré si els NOMS es REPETEIXEN o no
+#   Ara que ja sabem que TOTS els IDs REPETITS tenen UN SOL NOM
+#   Ja podem CREAR un nou DATA FREME = RIUS_2_ORDENAT_NET
+#   El qual tindpa ID unics amb cada NOM
 
 
 rius_2_ordrenat <- rius_2 %>%
@@ -169,6 +172,8 @@ long <- length(rius_2_ordrenat$OBJECTID)
 
 unics_id <- unique(rius_2_ordrenat$OBJECTID)
 long_unics_id <- length(unics_id)
+
+rius_2_ordrenat_net <- data.frame() # nou DATA FRAME on posare els ID unics amb el NOM
 
 for (i in 1:long_unics_id){
   id <- unics_id[i]
@@ -189,12 +194,19 @@ for (i in 1:long_unics_id){
     print(paste(id,' té nomes UN nom = ',unic_nom[1]))
   }
   
+  #   Ja podem CREAR un nou DATA FREME = RIUS_2_ORDENAT_NET
+  #   El qual tindpa ID unics amb cada NOM
+  
+  rius_2_ordrenat_net <- rbind(
+    rius_2_ordrenat_net,
+    data.frame(OBJECTID = id, nom_rio= unic_nom[1])
+  )
+  
 }
 
-
-#   Ara que ja sabem que TOTS els IDs REPETITS tenen UN SOL NOM
-#   Ja podem de borrar de RIUS_2_ORDENATS totes les files amb ID REPETITS
+rius_2_ordrenat_net
 
 
-rius_2_ordrenat 
-long <- length(rius_2_ordrenat$OBJECTID) 
+
+
+
