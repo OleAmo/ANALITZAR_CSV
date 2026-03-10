@@ -189,8 +189,9 @@ for (i in 1:long_unics_id){
     print(paste(id,' té nomes UN nom = ',unic_nom[1]))
   }
   
-  
- 
-  
-  
 }
+
+
+#   Ara que ja sabem que TOTS els IDs REPETITS tenen UN SOL NOM
+#   Ja podem de borrar de RIUS_2_ORDENATS totes les files amb ID REPETITS
+
