@@ -195,3 +195,6 @@ for (i in 1:long_unics_id){
 #   Ara que ja sabem que TOTS els IDs REPETITS tenen UN SOL NOM
 #   Ja podem de borrar de RIUS_2_ORDENATS totes les files amb ID REPETITS
 
+
+rius_2_ordrenat 
+long <- length(rius_2_ordrenat$OBJECTID) 
