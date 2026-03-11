@@ -15,7 +15,6 @@ library(tidyverse)
 rius <- read_csv("data/raw/TAULA.csv")
 
 
-
 #   OBJECTIU
 
 #   AUTOMATIZAR la NETEJA de una taula CSV
@@ -24,10 +23,13 @@ rius <- read_csv("data/raw/TAULA.csv")
 rius <- read_csv("data/raw/TAULA.csv")
 
 netja_csv <- function(rius) {
-  csv <- rius
-  long <- csv[1,]
+  columnes <- length(rius[1,])
+  id <- rius[,1]
+  nom <- rius[,2]
+  id_2 <- rius[,3]
+  nom_2 <- rius[,4]
  
-  return(print(long))
+  return(print(id))
 }
 
 netja_csv(rius)
