@@ -32,13 +32,12 @@ netja_csv <- function(rius) {
   rius_2 <- rius %>%     # Ordeno RIUS per ID_2
     arrange(id_2)
   
-  long <- length(nom)             # Comparo si ID_2 es IGUAL al seguent ID_2
+                                  # Comparo si ID_2 es IGUAL al seguent ID_2
   rius_sinnom <- data.frame()     # Si es així poso el ID_2 i el NOM_2 un DATAFRAME
-  for (i in 1:(long-1)){          # Així tindré la taula dels SINOMBRE
-    
-  }
+  longitud <- length(rius[,1])
+  print(rius[,1])
   
-  print(long)
+ 
   
   
  
