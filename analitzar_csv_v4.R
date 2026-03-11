@@ -50,12 +50,38 @@ netja_csv <- function(rius) {
     }
   }
   
- 
   
+  # Faig NOVA ITERACIÓ de RIUS_SINOM per NETEJAR els ID REPETITS
   
  
-  return(rius_sinnom)
+  long_2 <- length(rius_sinnom[,1])         
+  rius_sinnom_2 <- data.frame()
+  
+  for (i in 1:(long_2-1)){
+    id__1 <- rius_sinnom$OBJECTID[i]
+    id__2 <- rius_sinnom$OBJECTID[i+1]
+    
+    if(id__1 == id__2){
+      id_sinnom_2 <- id__1
+      nou_nom_2 <- rius_sinnom$nom_rio[i]
+      
+      rius_sinnom_2 <- rbind(
+        rius_sinnom_2,
+        data.frame(OBJECTID = id_sinnom_2, nom_rio = nou_nom_2)
+      )
+    }
+    
+    
+  }
+
+ 
+  return(rius_sinnom_2)
 }
 
 netja_csv(rius)
+
+
+
+
+
   
