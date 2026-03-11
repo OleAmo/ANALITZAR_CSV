@@ -12,7 +12,7 @@ library(tidyverse)
 #    ASSIGNAR el CSV a una variable RIUS
 
 
-rius <- read_csv("data/raw/TAULA.csv")
+rius <- read.csv("data/raw/TAULA.csv")
 
 #    veure el tipus de dades que tinc
 
