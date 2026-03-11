@@ -20,7 +20,7 @@ rius <- read_csv("data/raw/TAULA.csv")
 #   AUTOMATIZAR la NETEJA de una taula CSV
 #   Ha de ser una funcio que introdueixis un CSV i et "NETEGI" els sense noms
 
-rius <- read_csv("data/raw/TAULA.csv")
+
 
 netja_csv <- function(rius) {
   columnes <- length(rius[1,])
@@ -28,8 +28,21 @@ netja_csv <- function(rius) {
   nom <- rius[,2]
   id_2 <- rius[,3]
   nom_2 <- rius[,4]
+  
+  rius_2 <- rius %>%     # Ordeno RIUS per ID_2
+    arrange(id_2)
+  
+  long <- length(nom)             # Comparo si ID_2 es IGUAL al seguent ID_2
+  rius_sinnom <- data.frame()     # Si es així poso el ID_2 i el NOM_2 un DATAFRAME
+  for (i in 1:(long-1)){          # Així tindré la taula dels SINOMBRE
+    
+  }
+  
+  print(long)
+  
+  
  
-  return(print(id))
+  #return(rius_2)
 }
 
 netja_csv(rius)
