@@ -24,24 +24,37 @@ rius <- read.csv("data/raw/TAULA.csv")
 
 netja_csv <- function(rius) {
   columnes <- length(rius[1,])
-  id <- rius[,1]
-  nom <- rius[,2]
-  id_2 <- rius[,3]
-  nom_2 <- rius[,4]
   
-  rius_2 <- rius %>%     # Ordeno RIUS per ID_2
-    arrange(id_2)
+  rius_2 <- rius %>%     # Ordeno RIUS per OBJECTID_2
+    arrange(OBJECTID_2)
   
-                                  # Comparo si ID_2 es IGUAL al seguent ID_2
-  rius_sinnom <- data.frame()     # Si es així poso el ID_2 i el NOM_2 un DATAFRAME
-  longitud <- length(rius[,1])
-  print(longitud)
+  id <- rius_2[,1]
+  nom <- rius_2[,2]
+  id_2 <- rius_2[,3]
+  nom_2 <- rius_2[,4]
+
+  long <- length(id)              # Comparo si ID_2 es IGUAL al seguent ID_2
+  rius_sinnom <- data.frame()     # Si es així poso el ID_2 i el NOM els poso en un DATAFRAME
+  for (i in 1:(long-1)){
+    id__1 <- id_2[i]
+    id__2 <- id_2[i+1]
+    
+    if(id__1 == id__2){
+      id_sinnom <- id__1
+      nou_nom <- nom[i]
+      
+      rius_sinnom <- rbind(
+        rius_sinnom,
+        data.frame(OBJECTID = id_sinnom, nom_rio = nou_nom)
+      )
+    }
+  }
   
  
   
   
  
-  #return(rius_2)
+  return(rius_sinnom)
 }
 
 netja_csv(rius)
