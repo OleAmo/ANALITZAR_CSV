@@ -12,7 +12,7 @@ library(tidyverse)
 #    ASSIGNAR el CSV a una variable RIUS
 
 
-rius <- read_csv("data/raw/TAULA.csv")
+rius <- read.csv("data/raw/TAULA.csv")
 
 
 #   OBJECTIU
@@ -35,7 +35,7 @@ netja_csv <- function(rius) {
                                   # Comparo si ID_2 es IGUAL al seguent ID_2
   rius_sinnom <- data.frame()     # Si es així poso el ID_2 i el NOM_2 un DATAFRAME
   longitud <- length(rius[,1])
-  print(rius[,1])
+  print(longitud)
   
  
   
@@ -45,4 +45,4 @@ netja_csv <- function(rius) {
 }
 
 netja_csv(rius)
-
+  
