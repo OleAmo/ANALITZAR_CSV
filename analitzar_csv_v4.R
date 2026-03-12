@@ -75,13 +75,20 @@ netja_csv <- function(rius) {
   
   #   Ara que ja tinc RIUS_SINOM_2 una TAULA de ID amb NOMS
   #   Ara que ja tinc RIUS_SINOM una TAULA de ID REPETITS amb SENSE NOMS
+  
   #   He de crear un TUALA RIUS_SINOM_3
-  #   Aquesta taula serà els la RIUS_SINOM eliminant els ID REPETITS  
+  #   Aquesta taula serà els la RIUS_SINOM eliminant els ID REPETITS (tenen NOM i SINOM) 
   #   Justament els repetits son els ID de RIUS_SINOM_2
   #   Un cop eliminats li afegirem els ID de RIUS_SIOM_2
   
+  #   PROCÉS:
+  #   Elimino de RIUS_SINOM els IDs de RIUS_SINOM_2
+  #   I la nova taula es RIUS_SINOM_3
+  
   rius_sinnom_3 <- rius_sinnom %>%
     filter(!(rius_sinnom$OBJECTID %in% rius_sinnom_2$OBJECTID)) 
+  
+  #   Un cop elimintas AFEGEIXO els ID de RIUS_SINOM_2 a RIUS_SINOM_3
   
   long <- length(rius_sinnom_2$OBJECTID)
   for (i in 1:long ){
@@ -96,15 +103,42 @@ netja_csv <- function(rius) {
   rius_sinnom_3 <- rius_sinnom_3 %>%     # Ordeno per OBJECTID
     arrange(OBJECTID)
   
-  rius <- rius %>%                       # Ordeno per OBJECTID
+  
+  # Un cop ho tinc he de ELIMINAR de RIUS els IDs de RIUS_SINOM_3
+  # Els elimino ja que en RIUS havia molts IDs repetits amb NOM i SENSE NOM
+  # I la taula RIUS_SINOM_3 ja té NET els IDs amb un NOM FINAL
+  # Un cops eliminats de RIUS afegirem a RIUS els ID de SINOM_3
+  
+  rius_FINAL <- rius %>%
+    filter(!(rius$OBJECTID %in% rius_sinnom_3$OBJECTID))
+  
+  long <- length(rius_FINAL$OBJECTID)
+  for (i in 1:long ){
+    
+    rius_FINAL <- rbind(
+      rius_FINAL,
+      data.frame(OBJECTID = rius_sinnom_3$OBJECTID[i], 
+                 nom_rio = rius_sinnom_3$nom_rio[i],
+                 OBJECTID_2 = 999999, 
+                 nom_rio_2 = 'NEW'
+                 )
+    )
+  }
+  
+  rius_FINAL<- rius_FINAL %>%     # Ordeno per OBJECTID
     arrange(OBJECTID)
   
+    
+  rius_FINAL <- rius_FINAL %>%              # Elimino els ID repetits
+    distinct(OBJECTID, .keep_all = TRUE)    # I deixo un sola fila dels IDs repetits
+                                            # ho ha sabut fer gràcies a CHATGPT
   
   llista <- list(
     df_1 =rius_sinnom,
     df_2 = rius_sinnom_2,
-    df_FINAL = rius_sinnom_3,
-    df_ORIGINAL = rius
+    df_3 = rius_sinnom_3,
+    df_ORIGINAL = rius,
+    df_FINAL = rius_FINAL
   )
 
  
@@ -115,12 +149,11 @@ llista <- netja_csv(rius)
 
 llista$df_1
 llista$df_2
-llista$df_FINAL
+llista$df_3
 llista$df_ORIGINAL
+llista$df_FINAL
 
  
-
-
 
 
 
