@@ -6,8 +6,8 @@
 #     llegir shapefiles
 #     manipular taula d’atributs
 
-# install.packages("tidyverse")
-# install.packages("sf")
+#install.packages("tidyverse")
+#install.packages("sf")
 
 
 library(tidyverse)
