@@ -153,8 +153,15 @@ llista$df_3
 llista$df_ORIGINAL
 llista$df_FINAL
 
- 
+#   Crec que hi ha un problema amb lo que he fet
+#   La llista ORIGINAL té 16 IDs DIFERENTS i UNICS
+#   La llista FINAL té 12 IDs DIFERENTS i UNIC
+#   Pertant em falten 4 IDs ORIGINALS que haurien d'estar a la FINAL
 
+num_id_ORIGINAL <-length(unique(llista$df_ORIGINAL$OBJECTID)) 
+num_id_FINAL <- length(unique(llista$df_FINAL$OBJECTID))
 
+num_id_ORIGINAL
+num_id_FINAL
 
   
