@@ -164,10 +164,21 @@ num_id_DF3 <-length(unique(llista$df_3$OBJECTID))
 num_id_ORIGINAL <-length(unique(llista$df_ORIGINAL$OBJECTID)) 
 num_id_FINAL <- length(unique(llista$df_FINAL$OBJECTID))
 
+id_DF1 <-unique(llista$df_1$OBJECTID)
+id_DF2 <-unique(llista$df_2$OBJECTID)
+id_DF3 <-unique(llista$df_3$OBJECTID)
+id_ORIGINAL <-unique(llista$df_ORIGINAL$OBJECTID)
+id_FINAL <- unique(llista$df_FINAL$OBJECTID)
+
 num_id_DF1
 num_id_DF2
 num_id_DF3
 num_id_ORIGINAL
 num_id_FINAL
 
+id_DF1
+id_DF2
+id_DF3
+id_ORIGINAL
+id_FINAL
   
