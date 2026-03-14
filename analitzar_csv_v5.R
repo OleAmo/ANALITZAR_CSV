@@ -98,10 +98,8 @@ netja_csv <- function(rius) {
   
   
   #  CONTINUAAAAAAAAAAAAARRRRRRRRRR
-  
-  
-  
-  
+  #  CONTINUAAAAAAAAAAAAARRRRRRRRRR
+  #  CONTINUAAAAAAAAAAAAARRRRRRRRRR
   
   
   llista <- list(
