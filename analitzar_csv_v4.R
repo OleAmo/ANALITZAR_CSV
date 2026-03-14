@@ -36,7 +36,7 @@ netja_csv <- function(rius) {
             # Comparo si ID_2 es IGUAL al seguent ID_2
             # Si es així poso el ID_2 i el NOM els poso en un DATAFRAME
  
-   long <- length(id)              
+  long <- length(id)              
   rius_sinnom <- data.frame()    
   for (i in 1:(long-1)){
     id__1 <- id_2[i]
@@ -137,7 +137,7 @@ netja_csv <- function(rius) {
     df_1 =rius_sinnom,
     df_2 = rius_sinnom_2,
     df_3 = rius_sinnom_3,
-    df_ORIGINAL = rius,
+    df_ORIGINAL = rius_2,
     df_FINAL = rius_FINAL
   )
 
@@ -181,4 +181,8 @@ id_DF2
 id_DF3
 id_ORIGINAL
 id_FINAL
+
+
+unique(llista$df_ORIGINAL$OBJECTID)
+unique(llista$df_ORIGINAL$OBJECTID_2)
   
