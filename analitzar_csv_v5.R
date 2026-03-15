@@ -59,16 +59,25 @@ netja_csv <- function(rius) {
                                             # ho ha sabut fer gràcies a CHATGPT 
    
   
-  id_amb_nom <- rius_2_AMB_NOM$OBJECTID
-  id_sense_nom <- unique(rius_2$OBJECTID_2)
+  id_amb_nom <- rius_2_AMB_NOM$OBJECTID        # ID de RIUS AMB NOM
+  id_sense_nom <- unique(rius_2$OBJECTID_2)    # ID de RIUS SENSE NOM
   
   
   #   SEGÜENT PROCÉS:
-  #   Un cop creada la TAULA amb NOM ORIGINAL = rius_2_AMB_NOM
-  #   Ara ja jodem ANARLITZAR els ID_2 per donar NOM als SENSE NOM
   
-  #   Comparo si ID_2 es IGUAL al seguent ID_2
-  #   Si es així poso el ID_2 i el NOM els poso en un DATAFRAME
+  #   Un cop creada la TAULA amb NOM ORIGINAL = rius_2_AMB_NOM
+  #   Ara ja Podem ANARLITZAR els ID_2 per donar NOM als SENSE NOM
+  #   Usarem només la taula RIUS_2 i usarem la columna ID_2
+  #   Tindré 2 columnes de noms = NOMS_RIO i NOMS_RIO_2
+  #   A NOMS_RIO_2 només hi ha SENSE NOM
+  #   A NOMS_RIO hi ha NOMS de RIU i SENSE NOM
+  #   Quan un ID_2 es IGUAL al seguent ID_2 vol dir que un RIU SENSE NOM ha fet un INTERSESCT...
+  #   ...amb un RIU AMB NOM. I jo vull ASSIGNAR le NOM DEL RIU al ID del SENSE NOM
+  #   És una forma que m'he inventat per POSAR NOMS als rius SENSE NOM
+  
+  #   PERTANT
+  #   Comparo si ID_2 ID_2 es IGUAL al seguent ID_2 
+  #   Si es així = GUARADARÉ el ID_2 i el NOM_RIO i els poso en un NOU DATAFRAME
   
   long <- length(id)              
   rius_sinnom <- data.frame()    
@@ -107,10 +116,26 @@ netja_csv <- function(rius) {
     }
   }
   
+  #   Ara creo SINOM_3 = que es els SINOM - SIONOM_2
+  #   Un cop creat SINOM_3 he de eliminar les files amb ID repeits i deixar una fila per tipus de ID
   
-  #  CONTINUAAAAAAAAAAAAARRRRRRRRRR
-  #  CONTINUAAAAAAAAAAAAARRRRRRRRRR
-  #  CONTINUAAAAAAAAAAAAARRRRRRRRRR
+  #   Finalmenet creo la TAULA FINAL de SENSE NOM
+  #   Es la SUMA de SINOM_2 (que son pocs) + SINOM_3
+
+  
+  rius_sinnom_3 <- rius_sinnom %>%
+    filter(!(rius_sinnom$OBJECTID %in% rius_sinnom_2$OBJECTID))
+  
+  rius_sinnom_3 <- rius_sinnom_3 %>%        # Elimino els ID repetits
+    distinct(OBJECTID, .keep_all = TRUE)    # I deixo un sola fila dels IDs repetits
+                                            # ho ha sabut fer gràcies a CHATGPT 
+  
+  rius_sinom_final <- rbind(rius_sinnom_3 , rius_sinnom_2) 
+  
+  rius_sinom_final <- rius_sinom_final %>%  # Ordeno RIUS per OBJECTID
+    arrange(OBJECTID)
+  
+  
   
   
   llista <- list(
@@ -118,8 +143,10 @@ netja_csv <- function(rius) {
     id_2 =id_2,
     id_amb_nom = id_amb_nom,
     id_sense_nom = id_sense_nom,
-    df_1 =rius_sinnom,
-    df_2 =rius_sinnom_2,
+    SINNOM_1 =rius_sinnom,
+    SINNOM_2 =rius_sinnom_2,
+    SINNOM_3 =rius_sinnom_3,
+    SINNOM_FINAL =rius_sinom_final,
     ORIGINAL_AMB_NOM = rius_2_AMB_NOM,
     ORIGINAL = rius_2
   )
@@ -129,14 +156,20 @@ netja_csv <- function(rius) {
 
 llista <- netja_csv(rius)
 
-unique(llista$id_1)
-unique(llista$id_2)
 
 
-llista$ORIGINAL
+
+llista$SINNOM_1
+llista$SINNOM_2
+llista$SINNOM_3
+llista$SINNOM_FINAL
 llista$ORIGINAL_AMB_NOM
-llista$df_1
-llista$df_2
 
+llista$id_amb_nom
+llista$id_sense_nom
+
+
+llista$SINNOM_FINAL
+llista$id_sense_nom
 
   
