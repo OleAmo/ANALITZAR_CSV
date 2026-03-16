@@ -22,6 +22,86 @@ rius <- read.csv("data/raw/TAULA.csv")
 
 
 
+
+#   PRIMER DE TOT = ANLITZAR CSV
+#   -----------------------------
+
+#   Vull saber de cada CSV quants ID_1 ÚNICS i ID_2 ÚNICS hi ha.
+#   Amb aquest recompte sabré si em descuido algun ID en tot el proces.
+
+#   ID_1 ÚNICS = Són rius amb NOM
+#   ID_2 ÚNICS = Són rius amb SENSE NOM = Els hauré de processar x donar nom
+
+analitzar_csv <- function(rius) {
+  
+  rius_2 <- rius %>%     # Ordeno RIUS per OBJECTID_2
+    arrange(OBJECTID_2)
+  
+  id <- rius_2$OBJECTID
+  nom <- rius_2$nom_rio
+  id_2 <- rius_2$OBJECTID_2
+  nom_2 <- rius_2$nom_rio_2
+  
+  rius_AMB_NOM <- rius_2 %>%
+    filter(!(id %in% id_2))
+  
+  rius_AMB_NOM <- rius_AMB_NOM %>%          # Elimino els ID repetits
+    distinct(OBJECTID, .keep_all = TRUE)    # I deixo un sola fila dels IDs repetits
+                                            # ho ha sabut fer gràcies a CHATGPT
+ 
+   rius_AMB_NOM <- rius_AMB_NOM %>%         # Elimino les columnes ID_2 i NOM_2 que no m'interessen
+    select(-c(OBJECTID_2, nom_rio_2))       # Al final només voldre columna OBJECTID i NOM_RIO
+  
+  
+   
+   # Un cop tinc la taula dels RIUS ORIGINALS AMB NOM
+   # Vull saber els IDs de  NOM i IDS sense nom
+   
+   
+   id_sense_nom <- unique(rius_AMB_NOM$OBJECTID)
+   
+   #  ARA HE DE BUSCAR ELS ID AMB NOM
+   #  ARA HE DE BUSCAR ELS ID TOTALS
+   
+   #  A***********************************************************
+   #   ------------ A C A B A A A A A A R -------------------------
+   #   ------------ A C A B A A A A A A R -------------------------
+   #   ------------ A C A B A A A A A A R -------------------------
+   
+   
+   llista <- list(
+    ORIGINAL =rius_2,
+    AMB_NOM =rius_AMB_NOM,
+    id_sense_nom = id_sense_nom
+    
+  )
+  
+  return(llista)
+  
+}
+
+analisis <- analitzar_csv(rius)
+
+analisis$ORIGINAL
+analisis$AMB_NOM
+analisis$id_nom
+analisis$id_sense_nom
+analisis$id_total
+
+
+
+
+
+
+
+
+
+
+#   SEGON = PROCESSAR CSV
+#   -----------------------------
+
+
+
 netja_csv <- function(rius) {
   columnes <- length(rius[1,])
   
@@ -165,8 +245,8 @@ netja_csv <- function(rius) {
   return(llista)
 }
 
-llista <- netja_csv(rius)
 
+llista <- netja_csv(rius)
 
 llista$SINNOM_1
 llista$SINNOM_2
