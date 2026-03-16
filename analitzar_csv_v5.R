@@ -57,7 +57,9 @@ netja_csv <- function(rius) {
   rius_2_AMB_NOM <- rius_2_AMB_NOM %>%      # Elimino els ID repetits
     distinct(OBJECTID, .keep_all = TRUE)    # I deixo un sola fila dels IDs repetits
                                             # ho ha sabut fer gràcies a CHATGPT 
-   
+  
+  rius_2_AMB_NOM <- rius_2_AMB_NOM %>%      # Elimino les columnes ID_2 i NOM_2 que no m'interessen
+    select(-c(OBJECTID_2, nom_rio_2))       # Al final només voldre columna OBJECTID i NOM_RIO
   
   id_amb_nom <- rius_2_AMB_NOM$OBJECTID        # ID de RIUS AMB NOM
   id_sense_nom <- unique(rius_2$OBJECTID_2)    # ID de RIUS SENSE NOM
@@ -136,6 +138,14 @@ netja_csv <- function(rius) {
     arrange(OBJECTID)
   
   
+  #   I per acabar amb el projecte UNEIXO dues TAULES
+  #     .-) RIUS_2_AMB_NOM = Els rius que en el CSV original ja tenien NOM
+  #     .-) RIUS_SINOM_FINAL = Els rius SENSE NOM del CSV original que els  hi hem donat nom
+  
+  rius_3_FINAL <- rbind(rius_sinom_final , rius_2_AMB_NOM) 
+  
+  rius_3_FINAL <- rius_3_FINAL %>%  # Ordeno RIUS per OBJECTID
+    arrange(OBJECTID)
   
   
   llista <- list(
@@ -143,12 +153,13 @@ netja_csv <- function(rius) {
     id_2 =id_2,
     id_amb_nom = id_amb_nom,
     id_sense_nom = id_sense_nom,
+    ORIGINAL = rius_2,
     SINNOM_1 =rius_sinnom,
     SINNOM_2 =rius_sinnom_2,
     SINNOM_3 =rius_sinnom_3,
     SINNOM_FINAL =rius_sinom_final,
     ORIGINAL_AMB_NOM = rius_2_AMB_NOM,
-    ORIGINAL = rius_2
+    FINAL = rius_3_FINAL
   )
 
   return(llista)
@@ -171,5 +182,5 @@ llista$id_sense_nom
 
 llista$SINNOM_FINAL
 llista$id_sense_nom
-
+llista$FINAL
   
