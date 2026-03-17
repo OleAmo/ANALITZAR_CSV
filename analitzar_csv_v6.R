@@ -146,9 +146,30 @@ netja_csv <- function(rius) {
   nom_2 <- rius_2$nom_rio_2
   
   
+  # Primer PAS:
+  # La columna ID_2, he de veure si estan REPETITS:
+  
+  # Si estan REPETITS faig:
+  #    -) GUARDO ID_2
+  #    -) GUARDO NOM_1
+  
+  long <- length(id_2)-1
+  for (i in 1:long){
+    if(id_2[i]==id_2[i+1]){
+      
+      print(paste(id_2[i], ' = SI'))
+      
+    }else{
+      
+      print(paste(id_2[i], ' = NO'))
+    }
+    
+  }
   
   
-  #   --------------- FER  NOU  SCRIPT  -------------------
+  
+  
+  #   --------------- FER  NOU  SCRIPT  -----------------
   #   ---------------------------------------------------
   #   ---------------------------------------------------
   #   ---------------------------------------------------
