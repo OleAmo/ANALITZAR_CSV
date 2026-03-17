@@ -201,6 +201,13 @@ llista$ORIGINAL
 analisis$RIUS_AMB_NOM
 
 
+
+
+#   -----------------------------
+#   TERCER = PAS FINAL
+#   -----------------------------
+
+
 # ARA UNEIXO = SINOM_1 + RIUS_AMB_NOM
 
 #    -) els SINOM_1 = Son els SENSE NOM ara amb NOM
@@ -213,6 +220,13 @@ rius_FINAL_TOTS <- rbind(rius_final_sensenom , rius_final_nom)
 
 rius_FINAL_TOTS <- rius_FINAL_TOTS %>%  # Ordeno RIUS per OBJECTID
   arrange(OBJECTID)
+
+
+#   -----------------------------
+#   -----------------------------
+#       PRODUCTE FNIAL
+#   -----------------------------
+#   -----------------------------
 
 # AIXÒ SON ELS PRODUCTE FINALS DE L'ANLISIS
 
