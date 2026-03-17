@@ -145,6 +145,17 @@ netja_csv <- function(rius) {
   id_2 <- rius_2$OBJECTID_2
   nom_2 <- rius_2$nom_rio_2
   
+  
+  
+  
+  #   --------------- FER  NOU  SCRIPT  -------------------
+  #   ---------------------------------------------------
+  #   ---------------------------------------------------
+  #   ---------------------------------------------------
+  
+  
+  
+  
   #   PRIMER = netejar els ID_1 de ID_2
   #   Els ID_1 són BARREJA de RIUS amb NOM i RIUS sense NOM
   #   Els ID_2 són NOMÉS RIUS SENSE NOM
