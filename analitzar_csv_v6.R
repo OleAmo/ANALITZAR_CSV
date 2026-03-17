@@ -97,10 +97,10 @@ analitzar_csv <- function(rius) {
    
    
    llista <- list(
-    ORIGINAL =rius_2,
-    AMB_NOM =rius_AMB_NOM,
-    SENSE_NOM =rius_SENSE_NOM,
-    TOTS = rius_TOTS,
+    RIUS_ORIGINAL =rius_2,
+    RIUS_AMB_NOM =rius_AMB_NOM,
+    RIUS_SENSE_NOM =rius_SENSE_NOM,
+    RIUS_TOTS = rius_TOTS,
     id_AMB_NOM = id_amb_nom,
     id_SENSE_NOM = id_sense_nom,
     id_TOTS = id_tots
@@ -115,9 +115,9 @@ analitzar_csv <- function(rius) {
 analisis <- analitzar_csv(rius)
 
 
-analisis$AMB_NOM
-analisis$SENSE_NOM
-analisis$TOTS
+analisis$RIUS_AMB_NOM
+analisis$RIUS_SENSE_NOM
+analisis$RIUS_TOTS
 
 analisis$id_AMB_NOM
 analisis$id_SENSE_NOM
