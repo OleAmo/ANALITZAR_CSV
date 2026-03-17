@@ -23,8 +23,11 @@ rius <- read.csv("data/raw/TAULA.csv")
 
 
 
+
+#   -----------------------------
 #   PRIMER DE TOT = ANLITZAR CSV
 #   -----------------------------
+
 
 #   Vull saber de cada CSV quants ID_1 ÚNICS i ID_2 ÚNICS hi ha.
 #   Amb aquest recompte sabré si em descuido algun ID en tot el proces.
@@ -58,21 +61,50 @@ analitzar_csv <- function(rius) {
    # Vull saber els IDs de  NOM i IDS sense nom
    
    
-   id_sense_nom <- unique(rius_AMB_NOM$OBJECTID)
+   id_amb_nom <- unique(rius_AMB_NOM$OBJECTID)
    
-   #  ARA HE DE BUSCAR ELS ID AMB NOM
-   #  ARA HE DE BUSCAR ELS ID TOTALS
+   # Ara busco els ID SENSE NOM
+   # Seran només els de la COLUMNA ID_2
+   # Eliminare els ID AMB NOM
+   # I els filtraré
    
-   #  A***********************************************************
-   #   ------------ A C A B A A A A A A R -------------------------
-   #   ------------ A C A B A A A A A A R -------------------------
-   #   ------------ A C A B A A A A A A R -------------------------
+   rius_SENSE_NOM <- rius_2 %>%
+     filter(!(id_2 %in% id_amb_nom))
+   
+   rius_SENSE_NOM <- rius_SENSE_NOM %>%          # Elimino els ID repetits
+     distinct(OBJECTID_2, .keep_all = TRUE)      # I deixo un sola fila dels IDs repetits
+                                                 # ho ha sabut fer gràcies a CHATGPT
+   
+   rius_SENSE_NOM <- rius_SENSE_NOM %>%         # Elimino les columnes ID i NOM_que no m'interessen
+     select(-c(OBJECTID, nom_rio))              # Al final només voldre columna OBJECTID_2 i NOM_RIO_2
+   
+   id_sense_nom <- unique(rius_SENSE_NOM$OBJECTID_2)
+   
+   
+   
+   #  ARA CALCULO ELS TOTALS
+   #  Abans de fer-ho canvio el noms de SENSE NOMS
+   #  Així podre ajuntar columnes
+   
+   names(rius_SENSE_NOM) <- c("OBJECTID", "nom_rio")
+   
+   rius_TOTS <- rbind(rius_SENSE_NOM , rius_AMB_NOM) 
+   
+   rius_TOTS <- rius_TOTS %>%  # Ordeno RIUS per OBJECTID
+     arrange(OBJECTID)
+   
+   id_tots <- unique(rius_TOTS$OBJECTID)
    
    
    llista <- list(
     ORIGINAL =rius_2,
     AMB_NOM =rius_AMB_NOM,
-    id_sense_nom = id_sense_nom
+    SENSE_NOM =rius_SENSE_NOM,
+    TOTS = rius_TOTS,
+    id_AMB_NOM = id_amb_nom,
+    id_SENSE_NOM = id_sense_nom,
+    id_TOTS = id_tots
+    
     
   )
   
@@ -82,21 +114,21 @@ analitzar_csv <- function(rius) {
 
 analisis <- analitzar_csv(rius)
 
-analisis$ORIGINAL
+
 analisis$AMB_NOM
-analisis$id_nom
-analisis$id_sense_nom
-analisis$id_total
+analisis$SENSE_NOM
+analisis$TOTS
+
+analisis$id_AMB_NOM
+analisis$id_SENSE_NOM
+analisis$id_TOTS
 
 
 
 
 
 
-
-
-
-
+#   -----------------------------
 #   SEGON = PROCESSAR CSV
 #   -----------------------------
 
