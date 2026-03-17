@@ -183,17 +183,6 @@ netja_csv <- function(rius) {
   }
   
   
-  
-  #   --------------- FER  NOU  SCRIPT  -----------------
-  #   ---------------------------------------------------
-  #   ---------------------------------------------------
-  #   ---------------------------------------------------
-  
-  
-  
-  
-
-  
   llista <- list(
     
     ORIGINAL = rius_2,
@@ -209,10 +198,26 @@ llista <- netja_csv(rius)
 llista$SINNOM_1
 llista$ORIGINAL
 
+analisis$RIUS_AMB_NOM
 
 
+# ARA UNEIXO = SINOM_1 + RIUS_AMB_NOM
 
+#    -) els SINOM_1 = Son els SENSE NOM ara amb NOM
+#    -) RIUS_AMB_NOM = Son els RIUS AMB NOM de la TAULA ORIGINAL
 
+rius_final_sensenom <- llista$SINNOM_1
+rius_final_nom <- analisis$RIUS_AMB_NOM
 
+rius_FINAL_TOTS <- rbind(rius_final_sensenom , rius_final_nom) 
+
+rius_FINAL_TOTS <- rius_FINAL_TOTS %>%  # Ordeno RIUS per OBJECTID
+  arrange(OBJECTID)
+
+# AIXÒ SON ELS PRODUCTE FINALS DE L'ANLISIS
+
+rius_FINAL_TOTS
+analisis$id_TOTS
+analisis$RIUS_TOTS
 
 
