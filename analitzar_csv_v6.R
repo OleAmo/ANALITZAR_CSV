@@ -146,27 +146,41 @@ netja_csv <- function(rius) {
   nom_2 <- rius_2$nom_rio_2
   
   
-  # Primer PAS:
-  # La columna ID_2, he de veure si estan REPETITS:
+  # OBJECTIU:
   
-  # Si estan REPETITS faig:
+  # La columna ID_2 estan repetits
+  # He de trobar els REPETITS i fer:
   #    -) GUARDO ID_2
   #    -) GUARDO NOM_1
   
-  long <- length(id_2)-1
-  rius_sinnom_1 <- data.frame()
-  for (i in 1:long){
-    if(id_2[i]==id_2[i+1]){
-      
-      rius_sinnom_1 <- rbind(
-        rius_sinnom_1,
-        data.frame(OBJECTID = id_2[i], nom_rio = nom[i])
-      )
-      
-    }
-    
-  }
+  # PROCÉS:
   
+  # Creo una llista amb els ID_2 UNICS
+  # Faig un FOR recorrent aquesta llista:
+  # De cada valor de la llista CREO un VECTOR de INDEX
+  # Aquests INDEX indiquen ON de la TAULA PRINCIPAL es repeteix el ID_2
+  # D'aquest VECTOR em quedo amb el 1r INDEX = Que és una posicio de una FILA al RIUS ORIGINAL
+  # I d'aquest INDEX n'extrec el ID_2 i el NOM_RIO
+  # Per tant al ID_2 que era SIN NOMBRE li donc un valor de NOM_RIO
+  # I creoo una TAUALA PER COLOCARLOS
+  # Fent-ho així TINC JA una TAULA amb ID_2 NO REPETITS i AMB NOM
+
+  
+  id_2_unics <- unique(id_2)
+  
+  rius_sinnom_1 <- data.frame()
+  for (i in id_2_unics){
+    index_ids <- which(id_2 == i)
+    index_num <- index_ids[1]
+    
+    id_select <- id_2[index_num]
+    nom_select <- nom[index_num]
+    
+    rius_sinnom_1 <- rbind(
+      rius_sinnom_1,
+      data.frame(OBJECTID = id_select, nom_rio = nom_select)
+    )
+  }
   
   
   
@@ -194,3 +208,11 @@ llista <- netja_csv(rius)
 
 llista$SINNOM_1
 llista$ORIGINAL
+
+
+
+
+
+
+
+
