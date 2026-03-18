@@ -3,6 +3,12 @@
 #   -------------- USARE UN NOVA TAULA DE CSV --------------
 #   --------------------------------------------------------
 
+#   OBJECTIU:
+
+#   Treballo amb un CSV MÉS GRAN
+#   Els SENSE NOM els hi poso NOM amb el PREFIX = TRAM DE_
+
+
 
 library(tidyverse)
 
