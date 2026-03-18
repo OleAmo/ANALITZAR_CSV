@@ -223,28 +223,9 @@ llista$SINNOM_1
 llista$ORIGINAL
 llista$FINAL_TOTS
 
-analisis$RIUS_AMB_NOM
+analisis$RIUS_TOTS
 
 
-
-
-#   -----------------------------
-#   TERCER = PAS FINAL
-#   -----------------------------
-
-
-# ARA UNEIXO = SINOM_1 + RIUS_AMB_NOM
-
-#    -) els SINOM_1 = Son els SENSE NOM ara amb NOM
-#    -) RIUS_AMB_NOM = Son els RIUS AMB NOM de la TAULA ORIGINAL
-
-rius_final_sensenom <- llista$SINNOM_1
-rius_final_nom <- analisis$RIUS_AMB_NOM
-
-rius_FINAL_TOTS <- rbind(rius_final_sensenom , rius_final_nom) 
-
-rius_FINAL_TOTS <- rius_FINAL_TOTS %>%  # Ordeno RIUS per OBJECTID
-  arrange(OBJECTID)
 
 
 #   -----------------------------
