@@ -207,7 +207,7 @@ processar_csv <- function(rius, rius_noms) {
 
 #   ----------------------------------------
 #   ----------------------------------------
-#       PRODUCTE FNIAL  - TAULA 2
+#       PRODUCTE FNIAL  - TAULA 3
 #   ----------------------------------------
 #   ----------------------------------------
 
@@ -234,37 +234,5 @@ processar_c$FINAL_TOTS
 #   --------------
 
 
-write.csv(llista$FINAL_TOTS, "data/processed/TAULA_2_processed.csv", row.names = FALSE)
-
-#   ----------------------------------------
-#   ----------------------------------------
-#       PRODUCTE FNIAL  - TAULA 3
-#   ----------------------------------------
-#   ----------------------------------------
-
-# AIXÒ SON ELS PRODUCTE FINALS DE L'ANLISIS
-
-
-
-analisis_c <- analitzar_csv(rius_c)
-llista_c <- netja_csv(rius_c,analisis$RIUS_AMB_NOM)
-
-
-analisis_c$RIUS_AMB_NOM
-analisis_c$RIUS_SENSE_NOM
-analisis_c$RIUS_TOTS
-
-analisis_c$id_AMB_NOM
-analisis_c$id_SENSE_NOM
-
-llista_c$FINAL_TOTS
-
-
-
-#   EXPORTAR A CSV
-#   --------------
-
-
-write.csv(llista_c$FINAL_TOTS, "data/processed/TAULA_3_processed.csv", row.names = FALSE)
-
+write.csv(processar_c$FINAL_TOTS, "data/processed/TAULA_3_processed.csv", row.names = FALSE)
 
