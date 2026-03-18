@@ -1,8 +1,7 @@
 #    PROJECTE 
 #    
-#    Automatizar el procés de depuració de CSV   
-#    La ideea poder bolcar el CSV de TOTS els rius de QGIS
-#    I que automaticament els SENSE NOMS els hi dongui un nom
+#   -------------- USARE UN NOVA TAULA DE CSV --------------
+#   --------------------------------------------------------
 
 
 library(tidyverse)
@@ -12,8 +11,7 @@ library(tidyverse)
 #    ASSIGNAR el CSV a una variable RIUS
 
 
-rius <- read.csv("data/raw/TAULA.csv")
-
+rius_b <- read.csv("data/raw/TAULA_2.csv")
 
 #   OBJECTIU
 
@@ -112,18 +110,6 @@ analitzar_csv <- function(rius) {
   
 }
 
-analisis <- analitzar_csv(rius)
-
-
-analisis$RIUS_AMB_NOM
-analisis$RIUS_SENSE_NOM
-analisis$RIUS_TOTS
-
-analisis$id_AMB_NOM
-analisis$id_SENSE_NOM
-analisis$id_TOTS
-
-
 
 
 
@@ -199,12 +185,8 @@ netja_csv <- function(rius, rius_noms) {
   rius_FINAL_TOTS <- rius_FINAL_TOTS %>%  # Ordeno RIUS per OBJECTID
     arrange(OBJECTID)
   
-  
-  
-  
-  
-  
-  
+ 
+
   
   llista <- list(
     
@@ -216,8 +198,8 @@ netja_csv <- function(rius, rius_noms) {
   return(llista)
 }
 
-
-llista <- netja_csv(rius,analisis$RIUS_AMB_NOM)
+analisis <- analitzar_csv(rius_2)
+llista <- netja_csv(rius_2,analisis$RIUS_AMB_NOM)
 
 llista$SINNOM_1
 llista$ORIGINAL
