@@ -198,8 +198,8 @@ netja_csv <- function(rius, rius_noms) {
   return(llista)
 }
 
-analisis <- analitzar_csv(rius_2)
-llista <- netja_csv(rius_2,analisis$RIUS_AMB_NOM)
+analisis <- analitzar_csv(rius_b)
+llista <- netja_csv(rius_b,analisis$RIUS_AMB_NOM)
 
 llista$SINNOM_1
 llista$ORIGINAL
