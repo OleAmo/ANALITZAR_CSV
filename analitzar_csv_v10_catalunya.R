@@ -226,7 +226,7 @@ analisis_cat$RIUS_TOTS
 analisis_cat$id_AMB_NOM
 analisis_cat$id_SENSE_NOM
 
-processar_cat$FINAL_TOTS
+CSV_PROCESSED <- processar_cat$FINAL_TOTS
 
 
 
@@ -234,5 +234,5 @@ processar_cat$FINAL_TOTS
 #   --------------
 
 
-write.csv(processar_c$FINAL_TOTS, "data/processed/TAULA_Catalunya_processed.csv", row.names = FALSE)
+write.csv(CSV_PROCESSED, "data/processed/TAULA_Catalunya_processed.csv", row.names = FALSE)
 
