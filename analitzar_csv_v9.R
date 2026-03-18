@@ -17,7 +17,7 @@ library(tidyverse)
 #    ASSIGNAR el CSV a una variable RIUS
 
 
-rius_b <- read.csv("data/raw/TAULA_2.csv")
+rius_c <- read.csv("data/raw/TAULA_3.csv")
 
 #   OBJECTIU
 
@@ -130,7 +130,7 @@ analitzar_csv <- function(rius) {
 #     2n.) El DF de NOMS_ORIGINALS = Creat per funció ANALISIS
 
 
-netja_csv <- function(rius, rius_noms) {
+processar_csv <- function(rius, rius_noms) {
 
   rius_2 <- rius %>%     # Ordeno RIUS per OBJECTID_2
     arrange(OBJECTID_2)
@@ -215,24 +215,56 @@ netja_csv <- function(rius, rius_noms) {
 
 
 
-analisis <- analitzar_csv(rius_b)
-llista <- netja_csv(rius_b,analisis$RIUS_AMB_NOM)
+analisis_c <- analitzar_csv(rius_c)
+processar_c <- processar_csv(rius_c,analisis_c$RIUS_AMB_NOM)
 
 
-analisis$RIUS_AMB_NOM
-analisis$RIUS_SENSE_NOM
-analisis$RIUS_TOTS
+analisis_c$RIUS_AMB_NOM
+analisis_c$RIUS_SENSE_NOM
+analisis_c$RIUS_TOTS
 
-analisis$id_AMB_NOM
-analisis$id_SENSE_NOM
+analisis_c$id_AMB_NOM
+analisis_c$id_SENSE_NOM
 
-llista$FINAL_TOTS
+processar_c$FINAL_TOTS
 
 
-#   ----------------------------
+
 #   EXPORTAR A CSV
-#   ----------------------------
+#   --------------
 
 
 write.csv(llista$FINAL_TOTS, "data/processed/TAULA_2_processed.csv", row.names = FALSE)
+
+#   ----------------------------------------
+#   ----------------------------------------
+#       PRODUCTE FNIAL  - TAULA 3
+#   ----------------------------------------
+#   ----------------------------------------
+
+# AIXÒ SON ELS PRODUCTE FINALS DE L'ANLISIS
+
+
+
+analisis_c <- analitzar_csv(rius_c)
+llista_c <- netja_csv(rius_c,analisis$RIUS_AMB_NOM)
+
+
+analisis_c$RIUS_AMB_NOM
+analisis_c$RIUS_SENSE_NOM
+analisis_c$RIUS_TOTS
+
+analisis_c$id_AMB_NOM
+analisis_c$id_SENSE_NOM
+
+llista_c$FINAL_TOTS
+
+
+
+#   EXPORTAR A CSV
+#   --------------
+
+
+write.csv(llista_c$FINAL_TOTS, "data/processed/TAULA_3_processed.csv", row.names = FALSE)
+
 
