@@ -163,7 +163,7 @@ netja_csv <- function(rius, rius_noms) {
     index_num <- index_ids[1]
     
     id_select <- id_2[index_num]
-    nom_select <- nom[index_num]
+    nom_select <- paste('Tram de_(',nom[index_num],')')
     
     rius_sinnom_1 <- rbind(
       rius_sinnom_1,
@@ -198,17 +198,6 @@ netja_csv <- function(rius, rius_noms) {
   return(llista)
 }
 
-analisis <- analitzar_csv(rius_b)
-llista <- netja_csv(rius_b,analisis$RIUS_AMB_NOM)
-
-llista$SINNOM_1
-llista$ORIGINAL
-llista$FINAL_TOTS
-
-analisis$RIUS_TOTS
-
-
-
 
 #   -----------------------------
 #   -----------------------------
@@ -218,8 +207,20 @@ analisis$RIUS_TOTS
 
 # AIXÒ SON ELS PRODUCTE FINALS DE L'ANLISIS
 
-rius_FINAL_TOTS
-analisis$id_TOTS
-analisis$RIUS_TOTS
+
+
+analisis <- analitzar_csv(rius_b)
+llista <- netja_csv(rius_b,analisis$RIUS_AMB_NOM)
+
+
+analisis$RIUS_AMB_NOM
+analisis$RIUS_SENSE_NOM
+
+llista$FINAL_TOTS
+
+
+
+
+
 
 
