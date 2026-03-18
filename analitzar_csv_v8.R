@@ -221,12 +221,21 @@ llista <- netja_csv(rius_b,analisis$RIUS_AMB_NOM)
 
 analisis$RIUS_AMB_NOM
 analisis$RIUS_SENSE_NOM
+analisis$RIUS_TOTS
+
+analisis$id_AMB_NOM
+analisis$id_SENSE_NOM
 
 llista$FINAL_TOTS
 
 
+#   ------------------------------
+#   ------------------------------
+#       EXPORTAR A CSV
+#   -----------------------------
+#   -----------------------------
 
-
+write.csv(llista$FINAL_TOTS, "data/processed/TAULA_2_processed.csv", row.names = FALSE)
 
 
 
